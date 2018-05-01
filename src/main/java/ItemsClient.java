@@ -15,17 +15,17 @@ public class ItemsClient {
     private static final String URL = "http://127.0.0.1:8080/";   // Replace with your own URL, if different
 
     //    This is getting all tasks in the jcson file
-    public static void getAllTasks(ItemsGUI gui) {
+    public static void getAllItems(ItemsGUI gui) {
 
 //        this is checking if it can get the infor and responding back
-        Unirest.get(URL + "tasks")
+        Unirest.get(URL + "items")
                 .header("Content-Type", "application/json")
                 .asObjectAsync(Item[].class, new Callback<Item[]>() {
 
                     //                   This is when there is a responce from the storage
                     @Override
                     public void completed(HttpResponse<Item[]> httpResponse) {
-                        System.out.println("all tasks response " + Arrays.toString(httpResponse.getBody()));
+                        System.out.println("all items response " + Arrays.toString(httpResponse.getBody()));
                         gui.newTaskList(httpResponse.getBody());
                     }
 
@@ -47,7 +47,7 @@ public class ItemsClient {
 
 
     //    This is for adding a new task to the storage
-    public static void addTask(ItemsGUI gui, Item item) {
+    public static void addItem(NewOrUpdateItem gui, Item item) {
 
         Unirest.post(URL + "add")
                 .header("Content-Type", "application/json")
@@ -76,12 +76,12 @@ public class ItemsClient {
     }
 
     //    This is for updating a task to completed
-    public static void updateTask(ItemsGUI gui, Item item) {
+    public static void updateitem(ItemsGUI gui, Item item) {
         System.out.println("Update - Implement me!");
 
         Unirest.patch(URL + "completed")
                 .header("Content-Type", "application/json")
-                .body(task)
+                .body(item)
                 .asJsonAsync(new Callback<JsonNode>() {
                     @Override
                     public void completed(HttpResponse<JsonNode> httpResponse) {
@@ -105,12 +105,12 @@ public class ItemsClient {
     }
 
 
-    public static void deleteTask(ItemsGUI gui, Item item) {
+    public static void deleteItem(ItemsGUI gui, Item item) {
         System.out.println("Delete - implement me!");
 
         Unirest.delete(URL + "delete")
                 .header("Content-Type", "application/json")
-                .body(task)
+                .body(item)
                 .asJsonAsync(new Callback<JsonNode>() {
                     @Override
                     public void completed(HttpResponse<JsonNode> httpResponse) {
@@ -131,28 +131,5 @@ public class ItemsClient {
                 });
     }
 
-    public static void urgentTask(ItemsGUI gui, Item item) {
-        System.out.println("Urgent - implement me!");
 
-        Unirest.patch(URL + "urgent")
-                .header("Content-Type", "application/json")
-                .body(item)
-                .asJsonAsync(new Callback<JsonNode>() {
-                    @Override
-                    public void completed(HttpResponse<JsonNode> httpResponse) {
-                        System.out.println("completed response " + httpResponse.getStatus()); // hopefully 201, should check
-                        gui.tasksUpdated();
-                    }
-
-                    @Override
-                    public void failed(UnirestException e) {
-                        System.err.println("urgent " + e);
-                        gui.taskError(e);
-                    }
-
-                    @Override
-                    public void cancelled() {
-                        System.out.println("Urgent change cancelled");
-                    }
-                });
     }

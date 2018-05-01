@@ -1,20 +1,30 @@
 public class Item {
     private Long id;
-    private String text;
-    private boolean urgent;
-    private boolean loaned = false;
+    private String user;
+    private String itemName;
+    private String location;
+    private String whereBought;
+    private String cost;
+    private String website;
+    private String whobarrowed;
+    private String whenBarrowed;
+    private String whenReturned;
+    private String whereBarrowed;
 
-    public Item() {}
+    public Item() {}// empty constructor, you need this
 
-    public Item(String text, boolean urgent) {
-        this.text = text;
-        this.urgent = urgent;
-    }   // empty constructor, you need this
 
-    public Item(String text, boolean urgent, boolean loaned) {
-        this.text = text;
-        this.urgent = urgent;
-        this.loaned = loaned;
+    public Item(String user, String itemName, String location, String whereBought, String cost, String website, String whobarrowed, String whenBarrowed, String whenReturned, String whereBarrowed) {
+        this.user = user;
+        this.itemName = itemName;
+        this.location = location;
+        this.whereBought = whereBought;
+        this.cost = cost;
+        this.website = website;
+        this.whobarrowed = whobarrowed;
+        this.whenBarrowed = whenBarrowed;
+        this.whenReturned = whenReturned;
+        this.whereBarrowed = whereBarrowed;
     }
 
     public Long getId() {
@@ -25,35 +35,101 @@ public class Item {
         this.id = id;
     }
 
-    public String getText() {
-        return text;
+    public String getUser() {
+        return user;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public String getItemName() {
+        return itemName;
     }
 
-    public boolean isUrgent() {
-        return urgent;
+    public String getLocation() {
+        return location;
     }
 
-    public void setUrgent(boolean urgent) {
-        this.urgent = urgent;
+    public String getWhereBought() {
+        return whereBought;
     }
 
-    public boolean isLoaned() {
-        return loaned;
+    public String getCost() {
+        return cost;
     }
 
-    public void setLoaned(boolean loaned) {
-        this.loaned = loaned;
+    public String getWebsite() {
+        return website;
+    }
+
+    public String getWhobarrowed() {
+        return whobarrowed;
+    }
+
+    public String getWhenBarrowed() {
+        return whenBarrowed;
+    }
+
+    public String getWhenReturned() {
+        return whenReturned;
+    }
+
+    public String getWhereBarrowed() {
+        return whereBarrowed;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public void setWhereBought(String whereBought) {
+        this.whereBought = whereBought;
+    }
+
+    public void setCost(String cost) {
+        this.cost = cost;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public void setWhobarrowed(String whobarrowed) {
+        this.whobarrowed = whobarrowed;
+    }
+
+    public void setWhenBarrowed(String whenBarrowed) {
+        this.whenBarrowed = whenBarrowed;
+    }
+
+    public void setWhenReturned(String whenReturned) {
+        this.whenReturned = whenReturned;
+    }
+
+    public void setWhereBarrowed(String whereBarrowed) {
+        this.whereBarrowed = whereBarrowed;
     }
 
 
     @Override
     public String toString() {
-        return (urgent ? "URGENT! " : " ") +
-                text +
-                ", loaned? " + (loaned ? "Loaned Out" : "Not Loaned");
+        return "Item{" +
+                "id=" + id +
+                ", user='" + user + '\'' +
+                ", itemName='" + itemName + '\'' +
+                ", location='" + location + '\'' +
+                ", whereBought='" + whereBought + '\'' +
+                ", cost='" + cost + '\'' +
+                ", website='" + website + '\'' +
+                ", whobarrowed='" + whobarrowed + '\'' +
+                ", whenBarrowed='" + whenBarrowed + '\'' +
+                ", whenReturned='" + whenReturned + '\'' +
+                ", whereBarrowed='" + whereBarrowed + '\'' +
+                '}';
     }
 }

@@ -39,12 +39,6 @@ public class ItemsGUI extends JFrame {
 
     private void configureList() {
 
-        // When a item is clicked on, toggle between complete and not complete.
-        itemList.addListSelectionListener(new ListSelectionListener() {
-            public void valueChanged(ListSelectionEvent e) {
-                updateItemIsLoaned();
-            }
-        });
 
         // The model contains a list of Task objects to be displayed in the list
         listModel = new DefaultListModel<>();
@@ -55,11 +49,11 @@ public class ItemsGUI extends JFrame {
 
         // Create pop-up menu, with one menu item.
         JPopupMenu rightClickMenu = new JPopupMenu();
-        JMenuItem deleteTask = new JMenuItem("Update");
-        JMenuItem urgentTask = new JMenuItem("Delete");
+        JMenuItem updateItem = new JMenuItem("Update");
+        JMenuItem deleteItem = new JMenuItem("Delete");
 
         // Add the action listener for clicking on the Delete menu option.
-        deleteTask.addActionListener(new ActionListener() {
+        deleteItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 itemList.setSelectedIndex(e.getID());
@@ -67,12 +61,12 @@ public class ItemsGUI extends JFrame {
             }
         });
 
-        urgentTask.addActionListener(new ActionListener() {
+        updateItem.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 itemList.setSelectedIndex(e.getID());
-                urgentTask();
+                updateItem();
 
             }
         });
@@ -121,36 +115,25 @@ public class ItemsGUI extends JFrame {
     }
 
     //    This function sets the gui to false and sends to taskclient getall task
-    private void getAllTasks() {
+    private void getAllItems() {
         enableGUI(false);
         ItemsClient.getAllItems(this);
     }
 
-
     private void addNewItem() {
-        enableGUI(false);
-        Item item = new Item(newItemText.getText(), urgentCheckBox.isSelected());
-        newItemText.setText("");
-        urgentCheckBox.setSelected(false);
-        TaskClient.addTask(this, task);
+            this.setVisible(false);
+            new NewOrUpdateItem().setVisible(true); // Main Form to show after the Login Form..
     }
 
-
-    private void updateItemIsLoaned() {
-        enableGUI(false);
-        Item item = itemList.getSelectedValue();
-        if (item != null) {
-            item.setLoaned(!item.isLoaned());
-            itemClient.updateItem(this, item);
-        }
+    private void updateItem(){
 
     }
 
-    private void deleteTask() {
+    private void deleteitem() {
         enableGUI(false);
         try {
             Item item = listModel.elementAt(rightClickTaskIndex);
-            if (item != null)  { itemsClient.deleteItem(this, item); }
+            if (item != null)  { ItemsClient.deleteItem(this, item); }
 
         } catch (Exception e) {
             System.out.println(e);
@@ -158,17 +141,9 @@ public class ItemsGUI extends JFrame {
         }
     }
 
-    private void urgentTask() {
-        enableGUI(false);
-        Item item = listModel.elementAt(rightClickTaskIndex);
-        if (item != null) {
-            item.setUrgent(!item.isUrgent());
-            ItemsClient.urgentTask(this, item);
-        }
-    }
 
     //    This goes to the function to get all task
-    protected void tasksUpdated() {
+    protected void itemsUpdated() {
         getAllItems();
     }
 
