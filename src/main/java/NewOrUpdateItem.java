@@ -55,6 +55,8 @@ public class NewOrUpdateItem extends JFrame{
 //    This function is to add or update information when user is done entering
     private void enterItemInfo(){
 //    TODO: make it so the user can enter and save information to the API
+        addNewItem();
+        this.dispose();
     }
 
 

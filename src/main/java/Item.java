@@ -142,6 +142,7 @@ public class Item {
                 ", itemName='" + itemName + '\'' +
                 ", location='" + location + '\'' +
                 ", whereBought='" + whereBought + '\'' +
+                ", whenBought=' "+ whenBought + '\'' +
                 ", cost='" + cost + '\'' +
                 ", website='" + website + '\'' +
                 ", whoBarrowed='" + whoBarrowed + '\'' +
@@ -151,11 +152,4 @@ public class Item {
                 '}';
     }
 
-//    This is a string just so I can use for the Jlist
-    public String listToString() {
-        return "Item{" +
-                "user='" + user + '\'' +
-                ", location='" + location + '\'' +
-                '}';
-    }
 }

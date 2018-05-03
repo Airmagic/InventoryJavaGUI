@@ -108,7 +108,7 @@ public class ItemsClient {
     public static void updateItem(ItemsGUI gui, Item item) {
         System.out.println("Update - Implement me!");
 
-        Unirest.patch(URL + "item")
+        Unirest.patch(URL + "item/update")
                 .header("Content-Type", "application/json")
                 .body(item)
                 .asJsonAsync(new Callback<JsonNode>() {
@@ -137,7 +137,7 @@ public class ItemsClient {
     public static void deleteItem(ItemsGUI gui, Item item) {
         System.out.println("Delete - implement me!");
 
-        Unirest.delete(URL + "item")
+        Unirest.delete(URL + "item/delete")
                 .header("Content-Type", "application/json")
                 .body(item)
                 .asJsonAsync(new Callback<JsonNode>() {
