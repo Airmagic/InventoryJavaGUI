@@ -4,6 +4,7 @@ import com.mashape.unirest.http.Unirest;
 
 import java.io.IOException;
 
+// This is to read and write to the json file from the API
 public class Config {
     public static void configObjectMapper() {
 
@@ -13,8 +14,9 @@ public class Config {
                     new com.fasterxml.jackson.databind.ObjectMapper();
 
 
+//            This is reading from the json fil and making it readible for the program to use
             @Override
-            public <T> T readValue(String s, Class<T> aClass) {
+            public <I> I readValue(String s, Class<I> aClass) {
                 try {
                     return jacksonObjectMapper.readValue(s, aClass);
                 } catch (IOException e) {
@@ -26,6 +28,7 @@ public class Config {
                 }
             }
 
+//            This is writing to the Json file
             @Override
             public String writeValue(Object o) {
                 try{

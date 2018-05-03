@@ -7,14 +7,14 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 import java.util.Arrays;
 
 
-/**
- * Created by clara on 4/12/18.
- */
+// base programming from Clara James
+
+
 public class ItemsClient {
     //    This is where the json file is located
-    private static final String URL = "http://127.0.0.1:8080/";   // Replace with your own URL, if different
+    private static final String URL = "http://127.0.0.1:5000/";   // Replace with your own URL, if different
 
-    //    This is getting all tasks in the jcson file
+    //    This is getting all Items in the jcson file
     public static void getAllItems(ItemsGUI gui) {
 
 //        this is checking if it can get the infor and responding back
@@ -26,14 +26,14 @@ public class ItemsClient {
                     @Override
                     public void completed(HttpResponse<Item[]> httpResponse) {
                         System.out.println("all items response " + Arrays.toString(httpResponse.getBody()));
-                        gui.newTaskList(httpResponse.getBody());
+                        gui.newItemList(httpResponse.getBody());
                     }
 
                     //                    This is when no responce from the storage
                     @Override
                     public void failed(UnirestException e) {
                         System.out.println(e);
-                        gui.taskError(e);
+                        gui.itemError(e);
 
                     }
 
@@ -46,24 +46,24 @@ public class ItemsClient {
     }
 
 
-    //    This is for adding a new task to the storage
+    //    This is for adding a new item to the storage
     public static void addItem(NewOrUpdateItem gui, Item item) {
 
-        Unirest.post(URL + "add")
+        Unirest.post(URL + "item/add")
                 .header("Content-Type", "application/json")
                 .body(item)
                 .asJsonAsync(new Callback<JsonNode>() {
                     @Override
                     public void completed(HttpResponse<JsonNode> httpResponse) {
                         System.out.println("add response " + httpResponse.getStatus()); // hopefully 201, should check
-                        gui.tasksUpdated();
+                        gui.itemsUpdated();
                     }
 
                     //                    This is the responces if it can't store the new task
                     @Override
                     public void failed(UnirestException e) {
                         System.out.println("Add task " + e);
-                        gui.taskError(e);
+                        gui.itemError(e);
 
                     }
 
@@ -75,25 +75,54 @@ public class ItemsClient {
                 });
     }
 
-    //    This is for updating a task to completed
-    public static void updateitem(ItemsGUI gui, Item item) {
+    //    This is for getting one item to update
+    public static void getOneItem(ItemsGUI gui, Item item) {
         System.out.println("Update - Implement me!");
 
-        Unirest.patch(URL + "completed")
+        Unirest.patch(URL + "item")
                 .header("Content-Type", "application/json")
                 .body(item)
                 .asJsonAsync(new Callback<JsonNode>() {
                     @Override
                     public void completed(HttpResponse<JsonNode> httpResponse) {
-                        System.out.println("completed response " + httpResponse.getStatus()); // hopefully 201, should check
-                        gui.tasksUpdated();
+                        System.out.println("One Item response " + httpResponse.getStatus()); // hopefully 201, should check
+                        gui.itemsUpdated();
+
+                    }
+
+                    @Override
+                    public void failed(UnirestException e) {
+                        System.out.println("One Item " + e);
+                        gui.itemError(e);
+
+                    }
+
+                    @Override
+                    public void cancelled() {
+                        System.out.println("One Item cancelled");
+                    }
+                });
+    }
+
+    //    This is for updating an Item
+    public static void updateItem(ItemsGUI gui, Item item) {
+        System.out.println("Update - Implement me!");
+
+        Unirest.patch(URL + "updateItem")
+                .header("Content-Type", "application/json")
+                .body(item)
+                .asJsonAsync(new Callback<JsonNode>() {
+                    @Override
+                    public void completed(HttpResponse<JsonNode> httpResponse) {
+                        System.out.println("Updated response " + httpResponse.getStatus()); // hopefully 201, should check
+                        gui.itemsUpdated();
 
                     }
 
                     @Override
                     public void failed(UnirestException e) {
                         System.out.println("completed " + e);
-                        gui.taskError(e);
+                        gui.itemError(e);
 
                     }
 
@@ -104,7 +133,7 @@ public class ItemsClient {
                 });
     }
 
-
+//    This is for deleting an item
     public static void deleteItem(ItemsGUI gui, Item item) {
         System.out.println("Delete - implement me!");
 
@@ -114,14 +143,14 @@ public class ItemsClient {
                 .asJsonAsync(new Callback<JsonNode>() {
                     @Override
                     public void completed(HttpResponse<JsonNode> httpResponse) {
-                        System.out.println("completed response " + httpResponse.getStatus()); // hopefully 201, should check
-                        gui.tasksUpdated();
+                        System.out.println("Deleted response " + httpResponse.getStatus()); // hopefully 201, should check
+                        gui.itemsUpdated();
                     }
 
                     @Override
                     public void failed(UnirestException e) {
                         System.err.println("delete " + e);
-                        gui.taskError(e);
+                        gui.itemError(e);
                     }
 
                     @Override

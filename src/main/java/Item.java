@@ -1,9 +1,13 @@
+//Creating a class to make item objects
+//base was created by Clara James
 public class Item {
+//    creating the variables that will be use for the items
     private Long id;
     private String user;
     private String itemName;
     private String location;
     private String whereBought;
+    private String whenBought;
     private String cost;
     private String website;
     private String whoBarrowed;
@@ -13,18 +17,31 @@ public class Item {
 
     public Item() {}// empty constructor, you need this
 
-
-    public Item(String user, String itemName, String location, String whereBought, String cost, String website, String whobarrowed, String whenBarrowed, String whenReturned, String whereBarrowed) {
+//    basic constructor when building the objects
+    public Item(String user, String itemName, String location, String whereBought, String whenBought, String cost, String website, String whoBarrowed, String whenBarrowed, String whenReturned, String whereBarrowed) {
         this.user = user;
         this.itemName = itemName;
         this.location = location;
         this.whereBought = whereBought;
+        this.whenBought = whenBought;
         this.cost = cost;
         this.website = website;
         this.whoBarrowed = whoBarrowed;
         this.whenBarrowed = whenBarrowed;
         this.whenReturned = whenReturned;
         this.whereBarrowed = whereBarrowed;
+    }
+
+//    getters and setter for all the variables so they are changible
+    public void setWhenBought(String whenBought) {
+        this.whenBought = whenBought;
+    }
+
+
+
+    public String getWhenBought() {
+
+        return whenBought;
     }
 
     public Long getId() {
@@ -116,6 +133,7 @@ public class Item {
     }
 
 
+//    This is a string of the each item when they are printed out as a dictionary
     @Override
     public String toString() {
         return "Item{" +
@@ -130,6 +148,14 @@ public class Item {
                 ", whenBarrowed='" + whenBarrowed + '\'' +
                 ", whenReturned='" + whenReturned + '\'' +
                 ", whereBarrowed='" + whereBarrowed + '\'' +
+                '}';
+    }
+
+//    This is a string just so I can use for the Jlist
+    public String listToString() {
+        return "Item{" +
+                "user='" + user + '\'' +
+                ", location='" + location + '\'' +
                 '}';
     }
 }

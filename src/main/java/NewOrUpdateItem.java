@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
+//This is the panel for viewing, updating, or making new item
 public class NewOrUpdateItem extends JFrame{
     private JPanel newOrUpdateform;
     private JLabel idNumberLabel;
@@ -29,11 +30,12 @@ public class NewOrUpdateItem extends JFrame{
     private JTextField barrowedLocationTxFd;
     private JButton enterBtn;
 
+//    Packing the window and setting up so vari
     NewOrUpdateItem() {
 
         setContentPane(newOrUpdateform);
-        setPreferredSize(new Dimension(500, 1000));
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new Dimension(500, 700));
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         pack();
         setVisible(false);
 
@@ -46,9 +48,17 @@ public class NewOrUpdateItem extends JFrame{
 
     }
 
+
     private void addNewItem() {
-        Item item = new Item(ownersNameTxFd.getText(), itemsNameTxFd.getText(), locationTxFd.getText(), whereBoughtTxFd.getText(), costTxFd.getText(), websiteTxFd.getText(), whoBarrowedTxFd.getText(), whenBarrowedTxFd.getText(), returnTxFd.getText(), wherebarrowed.getText());
+        Item item = new Item(ownersNameTxFd.getText(), itemsNameTxFd.getText(), locationTxFd.getText(), whereBoughtTxFd.getText(), whenBoughtTxFd.getText(), costTxFd.getText(), websiteTxFd.getText(), whoBarrowedTxFd.getText(), whenBarrowedTxFd.getText(), returnTxFd.getText(), barrowedLocationTxFd.getText());
         ItemsClient.addItem(this, item);
     }
 
+    public void itemsUpdated(){
+
+    }
+    public void itemError(Exception e) {
+        System.err.println(e);
+        new ItemsGUI().setVisible(true);
+    }
 }

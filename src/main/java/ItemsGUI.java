@@ -19,7 +19,7 @@ public class ItemsGUI extends JFrame {
     ItemsGUI() {
 
         setContentPane(mainPanel);
-        setPreferredSize(new Dimension(500, 1000));
+        setPreferredSize(new Dimension(500, 700));
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         pack();
         setVisible(true);
@@ -110,7 +110,7 @@ public class ItemsGUI extends JFrame {
 
 
     // Used to disable the task list while updates are in progress.
-    private void enableGUI(boolean enabled) {
+    public void enableGUI(boolean enabled) {
         itemList.setEnabled(enabled);
     }
 
@@ -121,7 +121,7 @@ public class ItemsGUI extends JFrame {
     }
 
     private void addNewItem() {
-            this.setVisible(false);
+//            this.setVisible(false);
             new NewOrUpdateItem().setVisible(true); // Main Form to show after the Login Form..
     }
 
@@ -149,7 +149,7 @@ public class ItemsGUI extends JFrame {
 
 
 
-    protected void newTaskList(Item[] items) {
+    protected void newItemList(Item[] items) {
 
         System.out.println(items.length + " NEW Items");
 
@@ -167,7 +167,7 @@ public class ItemsGUI extends JFrame {
     }
 
 
-    public void taskError(Exception e) {
+    public void itemError(Exception e) {
         System.err.println(e);
         enableGUI(true);
     }
