@@ -7,15 +7,19 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+//this class is a extention of the ItemsGUI form
 public class ItemsGUI extends JFrame {
     private JPanel mainPanel;
     private JList itemList;
     private JButton addNewItemBtn;
 
+//    Making a list model to use for the jlist
     private DefaultListModel<Item> listModel;
+
 
     private int rightClickTaskIndex;  // To keep track of which list item was right-clicked on.
 
+//    Setting the contents of the panels parameters
     ItemsGUI() {
 
         setContentPane(mainPanel);
@@ -30,6 +34,7 @@ public class ItemsGUI extends JFrame {
                 addNewItem();
             }
         });
+
 
         configureList();  // Bunch of JList setup
 
@@ -47,7 +52,7 @@ public class ItemsGUI extends JFrame {
         // Only want to select one item at a time.
         itemList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        // Create pop-up menu, with one menu item.
+        // Create pop-up menu, with  menu items.
         JPopupMenu rightClickMenu = new JPopupMenu();
         JMenuItem updateItem = new JMenuItem("Update");
         JMenuItem deleteItem = new JMenuItem("Delete");
@@ -57,24 +62,27 @@ public class ItemsGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 itemList.setSelectedIndex(e.getID());
+//                made a method
                 deleteitem();
             }
         });
-
+//          Added a listener for update in the menu
         updateItem.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 itemList.setSelectedIndex(e.getID());
+//                Made a method to call
                 updateItem();
 
             }
         });
 
+//        adding these to the right click menu
         rightClickMenu.add(updateItem);
         rightClickMenu.add(deleteItem);
 
-
+//        making the rightclick when it is on the list
         itemList.setComponentPopupMenu(rightClickMenu);
 
         // A lot of code to remember which item the user right-clicked on
@@ -109,26 +117,30 @@ public class ItemsGUI extends JFrame {
     }
 
 
-    // Used to disable the task list while updates are in progress.
+    // Used to disable the items list while updates are in progress.
     public void enableGUI(boolean enabled) {
         itemList.setEnabled(enabled);
     }
 
-    //    This function sets the gui to false and sends to taskclient getall task
+    //    This function sets the gui to false and sends to itemsclient getall task
     private void getAllItems() {
         enableGUI(false);
         ItemsClient.getAllItems(this);
     }
 
+//        This function opens the other gui
     private void addNewItem() {
+
 //            this.setVisible(false);
             new NewOrUpdateItem().setVisible(true); // Main Form to show after the Login Form..
     }
 
+//    This function gets the items opens the other gui
     private void updateItem(){
-
+//    TODO: get item and send it to the form so it can fill in and update
     }
 
+//        This function is to delete an item when right clicked on
     private void deleteitem() {
         enableGUI(false);
         try {
@@ -142,13 +154,13 @@ public class ItemsGUI extends JFrame {
     }
 
 
-    //    This goes to the function to get all task
+    //    This goes to the function to get all Items
     protected void itemsUpdated() {
         getAllItems();
     }
 
 
-
+// This function is to add new items to the list
     protected void newItemList(Item[] items) {
 
         System.out.println(items.length + " NEW Items");
@@ -167,6 +179,7 @@ public class ItemsGUI extends JFrame {
     }
 
 
+//    This is to print out errors
     public void itemError(Exception e) {
         System.err.println(e);
         enableGUI(true);

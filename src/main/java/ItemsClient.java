@@ -77,7 +77,7 @@ public class ItemsClient {
 
     //    This is for getting one item to update
     public static void getOneItem(ItemsGUI gui, Item item) {
-        System.out.println("Update - Implement me!");
+        System.out.println("one item get");
 
         Unirest.patch(URL + "item")
                 .header("Content-Type", "application/json")
@@ -108,7 +108,7 @@ public class ItemsClient {
     public static void updateItem(ItemsGUI gui, Item item) {
         System.out.println("Update - Implement me!");
 
-        Unirest.patch(URL + "updateItem")
+        Unirest.patch(URL + "item")
                 .header("Content-Type", "application/json")
                 .body(item)
                 .asJsonAsync(new Callback<JsonNode>() {
@@ -121,7 +121,7 @@ public class ItemsClient {
 
                     @Override
                     public void failed(UnirestException e) {
-                        System.out.println("completed " + e);
+                        System.out.println("update  " + e);
                         gui.itemError(e);
 
                     }
@@ -137,7 +137,7 @@ public class ItemsClient {
     public static void deleteItem(ItemsGUI gui, Item item) {
         System.out.println("Delete - implement me!");
 
-        Unirest.delete(URL + "delete")
+        Unirest.delete(URL + "item")
                 .header("Content-Type", "application/json")
                 .body(item)
                 .asJsonAsync(new Callback<JsonNode>() {
