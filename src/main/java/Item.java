@@ -6,7 +6,7 @@ public class Item {
     private String whereBought;
     private String cost;
     private String website;
-    private String whobarrowed;
+    private String whoBarrowed;
     private String whenBarrowed;
     private String whenReturned;
     private String whereBarrowed;
@@ -21,7 +21,7 @@ public class Item {
         this.whereBought = whereBought;
         this.cost = cost;
         this.website = website;
-        this.whobarrowed = whobarrowed;
+        this.whoBarrowed = whoBarrowed;
         this.whenBarrowed = whenBarrowed;
         this.whenReturned = whenReturned;
         this.whereBarrowed = whereBarrowed;
@@ -59,8 +59,8 @@ public class Item {
         return website;
     }
 
-    public String getWhobarrowed() {
-        return whobarrowed;
+    public String getWhoBarrowed() {
+        return whoBarrowed;
     }
 
     public String getWhenBarrowed() {
@@ -99,8 +99,8 @@ public class Item {
         this.website = website;
     }
 
-    public void setWhobarrowed(String whobarrowed) {
-        this.whobarrowed = whobarrowed;
+    public void setWhoBarrowed(String whoBarrowed) {
+        this.whoBarrowed = whoBarrowed;
     }
 
     public void setWhenBarrowed(String whenBarrowed) {
@@ -126,7 +126,7 @@ public class Item {
                 ", whereBought='" + whereBought + '\'' +
                 ", cost='" + cost + '\'' +
                 ", website='" + website + '\'' +
-                ", whobarrowed='" + whobarrowed + '\'' +
+                ", whoBarrowed='" + whoBarrowed + '\'' +
                 ", whenBarrowed='" + whenBarrowed + '\'' +
                 ", whenReturned='" + whenReturned + '\'' +
                 ", whereBarrowed='" + whereBarrowed + '\'' +
