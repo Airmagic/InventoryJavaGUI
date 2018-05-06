@@ -72,7 +72,7 @@ public class NewOrUpdateItem extends JFrame{
             addNewItem();
         }
         else{
-            updateItem();
+            updateItem(item);
         }
         this.dispose();
 
@@ -113,8 +113,19 @@ public class NewOrUpdateItem extends JFrame{
     }
 
 
-    private void updateItem(){
-        Item item = new Item(ownersNameTxFd.getText(), itemsNameTxFd.getText(), locationTxFd.getText(), whereBoughtTxFd.getText(), whenBoughtTxFd.getText(), costTxFd.getText(), websiteTxFd.getText(), whoBarrowedTxFd.getText(), whenBarrowedTxFd.getText(), returnTxFd.getText(), barrowedLocationTxFd.getText());
+    private void updateItem(Item item){
+        item.setUser(ownersNameTxFd.getText());
+        item.setItemName(itemsNameTxFd.getText());
+        item.setLocation(locationTxFd.getText());
+        item.setWhenBought(whenBoughtTxFd.getText());
+        item.setCost(costTxFd.getText());
+        item.setWebsite(websiteTxFd.getText());
+        item.setWhoBarrowed(whoBarrowedTxFd.getText());
+        item.setWhenBarrowed(whenBarrowedTxFd.getText());
+        item.setWhenReturned(returnTxFd.getText());
+        item.setWhereBarrowed(barrowedLocationTxFd.getText());
+
+
         ItemsClient.updateItem(this, item);
 
     }
