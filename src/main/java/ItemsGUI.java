@@ -16,7 +16,6 @@ public class ItemsGUI extends JFrame {
 //    Making a list model to use for the jlist
     private DefaultListModel<Item> listModel;
 
-    private boolean clickedItem;
     private int rightClickIndex;  // To keep track of which list item was right-clicked on.
 
 //    Setting the contents of the panels parameters
@@ -45,8 +44,9 @@ public class ItemsGUI extends JFrame {
     private void configureList() {
 
 
-        // The model contains a list of Task objects to be displayed in the list
+        // The model contains a list of item objects to be displayed in the list
         listModel = new DefaultListModel<>();
+
         itemList.setModel(listModel);
 
         // Only want to select one item at a time.

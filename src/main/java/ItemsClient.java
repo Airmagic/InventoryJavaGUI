@@ -135,7 +135,7 @@ public class ItemsClient {
     }
 
     //    This is for updating an Item
-    public static void updateItem(ItemsGUI gui, Item item) {
+    public static void updateItem(NewOrUpdateItem gui, Item item) {
         System.out.println("Update - Implement me!");
 
         Unirest.patch(URL + "item/update")
@@ -145,7 +145,7 @@ public class ItemsClient {
                     @Override
                     public void completed(HttpResponse<JsonNode> httpResponse) {
                         System.out.println("Updated response " + httpResponse.getStatus()); // hopefully 201, should check
-                        gui.itemsUpdated();
+//                        gui.itemsUpdated();
 
                     }
 

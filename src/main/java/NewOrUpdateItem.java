@@ -72,7 +72,7 @@ public class NewOrUpdateItem extends JFrame{
             addNewItem();
         }
         else{
-            itemsUpdated(item);
+            updateItem();
         }
         this.dispose();
 
@@ -112,6 +112,12 @@ public class NewOrUpdateItem extends JFrame{
 
     }
 
+
+    private void updateItem(){
+        Item item = new Item(ownersNameTxFd.getText(), itemsNameTxFd.getText(), locationTxFd.getText(), whereBoughtTxFd.getText(), whenBoughtTxFd.getText(), costTxFd.getText(), websiteTxFd.getText(), whoBarrowedTxFd.getText(), whenBarrowedTxFd.getText(), returnTxFd.getText(), barrowedLocationTxFd.getText());
+        ItemsClient.updateItem(this, item);
+
+    }
 //    This is for errors
     public void itemError(Exception e) {
         System.err.println(e);

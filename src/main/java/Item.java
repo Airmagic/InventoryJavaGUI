@@ -32,7 +32,7 @@ public class Item {
         this.whereBarrowed = whereBarrowed;
     }
 
-//    getters and setter for all the variables so they are changible
+//    getters and setter for all the variables so they are changeable
     public void setWhenBought(String whenBought) {
         this.whenBought = whenBought;
     }
@@ -133,6 +133,7 @@ public class Item {
     }
 
 
+
 //    This is a string of the each item when they are printed out as a dictionary
     @Override
     public String toString() {
@@ -152,4 +153,10 @@ public class Item {
                 '}';
     }
 
+    public String listFormat() {
+        return "id=" + id +
+                ", itemName='" + itemName + '\'' +
+                ", location='" + location + '\'' +
+                '}';
+    }
 }
