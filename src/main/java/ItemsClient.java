@@ -56,13 +56,14 @@ public class ItemsClient {
                     @Override
                     public void completed(HttpResponse<JsonNode> httpResponse) {
                         System.out.println("add response " + httpResponse.getStatus()); // hopefully 201, should check
-                        gui.itemsUpdated();
+//                        gui.itemsUpdated();
+
                     }
 
-                    //                    This is the responces if it can't store the new task
+                    //                    This is the responces if it can't store the new item
                     @Override
                     public void failed(UnirestException e) {
-                        System.out.println("Add task " + e);
+                        System.out.println("Add item " + e);
                         gui.itemError(e);
 
                     }
@@ -77,9 +78,38 @@ public class ItemsClient {
 
     //    This is for getting one item to update
     public static void getOneItem(ItemsGUI gui, Item item) {
-        System.out.println("one item get");
+        System.out.println("one item retrieve");
 
-        Unirest.patch(URL + "item")
+        Unirest.patch(URL + "item/getOneItem")
+                .header("Content-Type", "application/json")
+                .body(item)
+                .asJsonAsync(new Callback<JsonNode>() {
+                    @Override
+                    public void completed(HttpResponse<JsonNode> httpResponse) {
+                        System.out.println("One Item response " + httpResponse.getStatus()); // hopefully 201, should check
+                        gui.itemsUpdated();
+
+                    }
+
+                    @Override
+                    public void failed(UnirestException e) {
+                        System.out.println("One Item " + e);
+                        gui.itemError(e);
+
+                    }
+
+                    @Override
+                    public void cancelled() {
+                        System.out.println("One Item cancelled");
+                    }
+                });
+    }
+
+    //    This is for getting one item to update
+    public static void getOneItem(NewOrUpdateItem gui, Item item) {
+        System.out.println("one item retrieve");
+
+        Unirest.patch(URL + "item/getOneItem")
                 .header("Content-Type", "application/json")
                 .body(item)
                 .asJsonAsync(new Callback<JsonNode>() {

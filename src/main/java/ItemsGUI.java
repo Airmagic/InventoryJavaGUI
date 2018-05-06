@@ -16,8 +16,8 @@ public class ItemsGUI extends JFrame {
 //    Making a list model to use for the jlist
     private DefaultListModel<Item> listModel;
 
-
-    private int rightClickTaskIndex;  // To keep track of which list item was right-clicked on.
+    private boolean clickedItem;
+    private int rightClickIndex;  // To keep track of which list item was right-clicked on.
 
 //    Setting the contents of the panels parameters
     ItemsGUI() {
@@ -89,10 +89,8 @@ public class ItemsGUI extends JFrame {
         itemList.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                rightClickTaskIndex = itemList.locationToIndex(e.getPoint());
-                //rightClickTaskIndex =
+                rightClickIndex = itemList.locationToIndex(e.getPoint());
             }
-
             @Override
             public void mousePressed(MouseEvent e) {
 
@@ -123,29 +121,38 @@ public class ItemsGUI extends JFrame {
     }
 
     //    This function sets the gui to false and sends to itemsclient getall task
-    private void getAllItems() {
+    public void getAllItems() {
         enableGUI(false);
         ItemsClient.getAllItems(this);
     }
 
 //        This function opens the other gui
     private void addNewItem() {
-
+        Item item = null;
 //            this.setVisible(false);
-            new NewOrUpdateItem().setVisible(true); // Main Form to show after the Login Form..
+            new NewOrUpdateItem(item).setVisible(true); // Main Form to show after the Login Form..
+            ItemsClient.getAllItems(this);
+
     }
 
 //    This function gets the items opens the other gui
     private void updateItem(){
 //    TODO: get item and send it to the form so it can fill in and update
+        Item item = listModel.elementAt(rightClickIndex);
+        if (item != null){
+            new NewOrUpdateItem(item).setVisible(true);
+        }
+        getAllItems();
     }
 
 //        This function is to delete an item when right clicked on
     private void deleteitem() {
-        enableGUI(false);
+//        enableGUI(false);
         try {
-            Item item = listModel.elementAt(rightClickTaskIndex);
+            Item item = listModel.elementAt(rightClickIndex);
             if (item != null)  { ItemsClient.deleteItem(this, item); }
+
+            getAllItems();
 
         } catch (Exception e) {
             System.out.println(e);
