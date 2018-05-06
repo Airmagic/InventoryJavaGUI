@@ -114,6 +114,7 @@ public class NewOrUpdateItem extends JFrame{
 
 
     private void updateItem(Item item){
+        item.setId(Long.parseLong(idNumberResult.getText()));
         item.setUser(ownersNameTxFd.getText());
         item.setItemName(itemsNameTxFd.getText());
         item.setLocation(locationTxFd.getText());
