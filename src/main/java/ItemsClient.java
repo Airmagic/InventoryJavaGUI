@@ -116,7 +116,7 @@ public class ItemsClient {
                     @Override
                     public void completed(HttpResponse<JsonNode> httpResponse) {
                         System.out.println("One Item response " + httpResponse.getStatus()); // hopefully 201, should check
-                        gui.itemsUpdated();
+//                        gui.itemsUpdated();
 
                     }
 

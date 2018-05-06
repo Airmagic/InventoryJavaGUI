@@ -42,7 +42,7 @@ public class NewOrUpdateItem extends JFrame{
         setVisible(false);
 
         if (item != null) {
-            getItem(item); //getting the item if one it sent
+            itemsUpdated(item); //getting the item if one it sent
         }
         else{
             addNewItem();
@@ -72,7 +72,7 @@ public class NewOrUpdateItem extends JFrame{
             addNewItem();
         }
         else{
-            getItem(item);
+            itemsUpdated(item);
         }
         this.dispose();
 
@@ -94,13 +94,21 @@ public class NewOrUpdateItem extends JFrame{
     }
 
 //    This function is to send updates to the API
-    public void itemsUpdated(){
+    public void itemsUpdated(Item item){
 
-//        enterBtn.setText("Update - " + item.getItemName());
-//        idNumberResult.setText(String.valueOf(item.getId()));
-//        ownersNameTxFd.setText(item.getUser());
-//        itemsNameTxFd.setText(item.getItemName());
-
+        enterBtn.setText("Update - " + item.getItemName());
+        idNumberResult.setText(String.valueOf(item.getId()));
+        ownersNameTxFd.setText(item.getUser());
+        itemsNameTxFd.setText(item.getItemName());
+        locationTxFd.setText(item.getLocation());
+        whereBoughtTxFd.setText(item.getWhereBought());
+        whenBoughtTxFd.setText(item.getWhenBought());
+        costTxFd.setText(item.getCost());
+        websiteTxFd.setText(item.getWebsite());
+        whoBarrowedTxFd.setText(item.getWhoBarrowed());
+        whenBarrowedTxFd.setText(item.getWhenBarrowed());
+        returnTxFd.setText(item.getWhenReturned());
+        barrowedLocationTxFd.setText(item.getWhenBarrowed());
 
     }
 
