@@ -132,6 +132,7 @@ public class ItemsGUI extends JFrame {
 //            this.setVisible(false);
             new NewOrUpdateItem(item).setVisible(true); // Main Form to show after the Login Form..
             ItemsClient.getAllItems(this);
+            this.dispose();
 
     }
 
@@ -141,6 +142,7 @@ public class ItemsGUI extends JFrame {
         Item item = listModel.elementAt(rightClickIndex);
         if (item != null){
             new NewOrUpdateItem(item).setVisible(true);
+            this.dispose();
         }
         getAllItems();
     }

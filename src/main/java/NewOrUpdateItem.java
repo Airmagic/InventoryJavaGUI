@@ -74,6 +74,7 @@ public class NewOrUpdateItem extends JFrame{
         else{
             updateItem(item);
         }
+        ItemsGUI gui = new ItemsGUI();
         this.dispose();
 
 
