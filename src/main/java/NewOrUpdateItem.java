@@ -31,8 +31,9 @@ public class NewOrUpdateItem extends JFrame{
     private JTextField returnTxFd;
     private JTextField barrowedLocationTxFd;
     private JButton enterBtn;
+    private JButton cancelBtn;
 
-//    Setting the contents of the panels parameters
+    //    Setting the contents of the panels parameters
     NewOrUpdateItem(Item item) {
 
         setContentPane(newOrUpdateform);
@@ -63,6 +64,17 @@ public class NewOrUpdateItem extends JFrame{
                 enterItemInfo(update, item);
             }
         });
+        cancelBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exit();
+            }
+        });
+
+    }
+
+    private void exit(){
+        this.dispose();
     }
 
 //    This function is to add or update information when user is done entering
@@ -79,6 +91,7 @@ public class NewOrUpdateItem extends JFrame{
 
 
     }
+
 
 
     private  void getItem(Item item){
