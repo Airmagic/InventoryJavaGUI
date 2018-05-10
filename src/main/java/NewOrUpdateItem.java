@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 //This is the panel for viewing, updating, or making new item
 public class NewOrUpdateItem extends JFrame{
@@ -39,6 +41,14 @@ public class NewOrUpdateItem extends JFrame{
         setContentPane(newOrUpdateform);
         setPreferredSize(new Dimension(500, 700));
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+//        This is to open the main screen when the button on default button is pressed
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                exit();
+
+            }
+        });
         pack();
         setVisible(false);
 
@@ -71,9 +81,12 @@ public class NewOrUpdateItem extends JFrame{
             }
         });
 
+
     }
 
+//    This is for the cancel button
     private void exit(){
+        ItemsGUI gui = new ItemsGUI();
         this.dispose();
     }
 
