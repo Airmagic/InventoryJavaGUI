@@ -75,6 +75,8 @@ public class NewOrUpdateItem extends JFrame{
                 enterItemInfo(update, item);
             }
         });
+
+
         cancelBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -93,8 +95,8 @@ public class NewOrUpdateItem extends JFrame{
 
 //    This function is to add or update information when user is done entering
     private void enterItemInfo(boolean update, Item item){
-//    TODO: make it so the user can enter and save information to the API
-        if (update != true){
+//    make it so the user can enter and save information to the API
+        if (update == false){
             addNewItem();
         }
         else{
@@ -109,7 +111,7 @@ public class NewOrUpdateItem extends JFrame{
 
 
     private  void getItem(Item item){
-//  TODO: Make it so you can get information on one items and it is put into all the fields
+//  Make it so you can get information on one items and it is put into all the fields
             ItemsClient.getOneItem(this, item);
             }
 

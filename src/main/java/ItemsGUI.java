@@ -138,7 +138,7 @@ public class ItemsGUI extends JFrame {
 
 //    This function gets the items opens the other gui
     private void updateItem(){
-//    TODO: get item and send it to the form so it can fill in and update
+//    get item and send it to the form so it can fill in and update
         Item item = listModel.elementAt(rightClickIndex);
         if (item != null){
             new NewOrUpdateItem(item).setVisible(true);
@@ -149,7 +149,7 @@ public class ItemsGUI extends JFrame {
 
 //        This function is to delete an item when right clicked on
     private void deleteitem() {
-//        enableGUI(false);
+        enableGUI(false);
         try {
             Item item = listModel.elementAt(rightClickIndex);
             if (item != null)  { ItemsClient.deleteItem(this, item); }
