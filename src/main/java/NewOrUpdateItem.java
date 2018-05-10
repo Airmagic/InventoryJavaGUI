@@ -41,7 +41,7 @@ public class NewOrUpdateItem extends JFrame{
         setContentPane(newOrUpdateform);
         setPreferredSize(new Dimension(500, 700));
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-//        This is to open the main screen when the button on default button is pressed
+//        This is to open the main screen when the button on the
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -56,7 +56,8 @@ public class NewOrUpdateItem extends JFrame{
             itemsUpdated(item); //getting the item if one it sent
         }
         else{
-            addNewItem();
+//            to put text in the enter button
+            addNewItemform();
         }
 //        Creating a listener for the enter button
         enterBtn.addActionListener(new ActionListener() {
@@ -112,9 +113,13 @@ public class NewOrUpdateItem extends JFrame{
             ItemsClient.getOneItem(this, item);
             }
 
+// This is for the text in the enter button
+    private void addNewItemform(){
+        enterBtn.setText("Add New Item");
+    }
+
 //  This Function is to send a new item to the API
     private void addNewItem() {
-        enterBtn.setText("Add New Item");
         Item item = new Item(ownersNameTxFd.getText(), itemsNameTxFd.getText(), locationTxFd.getText(), whereBoughtTxFd.getText(), whenBoughtTxFd.getText(), costTxFd.getText(), websiteTxFd.getText(), whoBarrowedTxFd.getText(), whenBarrowedTxFd.getText(), returnTxFd.getText(), barrowedLocationTxFd.getText());
         ItemsClient.addItem(this, item);
 
